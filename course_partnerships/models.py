@@ -25,11 +25,11 @@ class Partner(TimeStampedModel):
     """
 
     name = models.CharField(
-        max_length=1024,
+        max_length=255,
         db_index=True,
     )
     slug = models.SlugField(
-        max_length=1024,
+        max_length=255,
         db_index=True,
     )
     logo = models.ImageField(
@@ -67,11 +67,11 @@ class Center(TimeStampedModel):
 
     partner = models.ForeignKey(Partner, db_index=True, on_delete=models.CASCADE)
     name = models.CharField(
-        max_length=1024,
+        max_length=255,
         db_index=True,
     )
     slug = models.SlugField(
-        max_length=1024,
+        max_length=255,
         db_index=True,
     )
     logo = models.ImageField(
