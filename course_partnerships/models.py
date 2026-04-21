@@ -17,6 +17,7 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 from organizations.models import Organization
 
 from .validators import validate_bannner_extension
+from .storage import PartnerLogoStorage, CenterLogoStorage, CourseCreatorStorage
 
 
 class Partner(TimeStampedModel):
@@ -34,7 +35,8 @@ class Partner(TimeStampedModel):
     )
     logo = models.ImageField(
         "logo",
-        upload_to="partner/",
+        upload_to="logos/",
+        storage=PartnerLogoStorage(),
         help_text=_(
             "Upload only image file with .png, .jpeg, .jpg extension. Recommended image size: W 240px * H 340px"
         ),
@@ -44,7 +46,8 @@ class Partner(TimeStampedModel):
         "Banner",
         blank=True,
         null=True,
-        upload_to="partner/",
+        upload_to="banners/",
+        storage=PartnerLogoStorage(),
         help_text=_("Upload only image file with .png, .jpeg, .jpg extension."),
         validators=[validate_bannner_extension],
     )
@@ -76,7 +79,8 @@ class Center(TimeStampedModel):
     )
     logo = models.ImageField(
         "logo",
-        upload_to="center/",
+        upload_to="logos/",
+        storage=CenterLogoStorage(),
         help_text=_(
             "Upload only image file with .png, .jpeg, .jpg extension. Recommended image size: W 240px * H 340px"
         ),
@@ -86,7 +90,8 @@ class Center(TimeStampedModel):
         "Banner",
         blank=True,
         null=True,
-        upload_to="center/",
+        upload_to="banners/",
+        storage=CenterLogoStorage(),
         help_text=_("Upload only image file with .png, .jpeg, .jpg extension."),
         validators=[validate_bannner_extension],
     )
@@ -236,7 +241,8 @@ class CourseCreator(TimeStampedModel):
     )
     profile_picture = models.ImageField(
         "Profile Picture",
-        upload_to="course_creators/",
+        upload_to="profile_pictures/",
+        storage=CourseCreatorStorage(),
         blank=True,
         null=True,
         help_text=_("Upload only image file with .png, .jpeg, .jpg extension."),
